@@ -23,7 +23,7 @@ void addCalories(const int totalCalories, int topThreeCalories[3])
     }
 }
 
-int calorieCounting()
+void calorieCounting()
 {
     int calorie = 0;
     int totalCalories = 0;
@@ -43,5 +43,4 @@ int calorieCounting()
     std::cout << "Most Calories : " << mostCalories << std::endl;
     std::cout << "Top Three : [" << topThreeCalories[0] << ", " << topThreeCalories[1] << ", " << topThreeCalories[2] << "]" << std::endl;
     std::cout << "Sum of top three : " << topThreeCalories[0] + topThreeCalories[1] + topThreeCalories[2] << std::endl;
-    return 0;
 }

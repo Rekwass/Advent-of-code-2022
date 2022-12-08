@@ -1,6 +1,6 @@
-#include <iostream>
+#include "adventOfCode2022.hpp"
 
-int calorieCounting();
+#include <iostream>
 
 bool displayHelp(const int ac, const char* const av[])
 {
@@ -18,8 +18,9 @@ bool checkArgs(const int ac, const char* const av[])
         std::cerr << "Invalid number of arguments" << std::endl;
         return false;
     }
+    // NOLINTNEXTLINE
     const int selectedDay = std::atoi(av[1]);
-    if (strcmp(av[1], "0") != 0 and selectedDay <= 0 or selectedDay > 25) {
+    if (selectedDay < 1 or selectedDay > 25) {
         std::cerr << "Invalid argument, you must enter a number between 0 and 25" << std::endl;
         return false;
     }
@@ -31,6 +32,8 @@ int main(const int ac, const char* av[])
     if (displayHelp(ac, av) or not checkArgs(ac, av)) {
         return 1;
     }
-    calorieCounting();
+
+    void (*functionPointer[2])() = {&calorieCounting, &calorieCounting};
+    (*functionPointer[0])();
     return 0;
 }
