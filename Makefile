@@ -1,11 +1,11 @@
-SRC			=	main.c 						\
+SRC			=	main.cpp 						\
 				day1/calorieCounting.cpp
 
 RM 			= 	rm -f
 
-CC 			= 	g++
+CC 			= 	clang++
 
-OBJ			=	$(SRC:.c=.o)
+OBJ			=	$(SRC:.cpp=.o)
 
 NAME		=	adventOfCode2022
 
