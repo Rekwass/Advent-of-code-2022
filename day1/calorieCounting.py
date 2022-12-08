@@ -10,6 +10,7 @@ def displayTopThreeCalories(calories: List[int]) -> None:
         calorie = max(calories)
         calories.remove(calorie)
         totalCalories += calorie
+        print(calorie)
     print(totalCalories)
 
 
