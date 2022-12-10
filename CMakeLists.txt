@@ -27,6 +27,7 @@ set(PROJECT_SOURCES
     main.cpp
     day1/calorieCounting.cpp
     day3/rucksackReorganization.cpp
+    day4/campCleanup.cpp
 )
 
 set(INCLUDES

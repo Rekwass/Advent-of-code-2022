@@ -33,7 +33,7 @@ int main(const int ac, const char* av[])
         return 1;
     }
 
-    void (*functionPointer[3])() = {&calorieCounting, &calorieCounting, &rucksackReorganization};
-    (*functionPointer[2])();
+    void (*functionPointer[4])() = {&calorieCounting, &calorieCounting, &rucksackReorganization, &campCleanup};
+    (*functionPointer[3])();
     return 0;
 }
