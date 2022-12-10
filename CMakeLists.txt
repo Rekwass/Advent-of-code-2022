@@ -26,6 +26,7 @@ set(CMAKE_CXX_FLAGS_RELEASE "-O3")
 set(PROJECT_SOURCES
     main.cpp
     day1/calorieCounting.cpp
+    day3/rucksackReorganization.cpp
 )
 
 set(INCLUDES
