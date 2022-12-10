@@ -1,4 +1,6 @@
 from day1.calorieCounting import calorieCounting
+from day2.rockPaperScissors import rockPaperScissors
+from day9.ropeBridge import ropeBridge
 from typing import List
 from sys import stdin
 
@@ -21,8 +23,10 @@ def readFile(filePath: str) -> List[str]:
 
 
 def main() -> int:
-    input: List[str] = readFile("day1/puzzle_input.txt")
-    calorieCounting(input)
+    # input: List[str] = readFile("day9/puzzle_input.txt")
+    # ropeBridge(input)
+    input: List[str] = readFile("day2/puzzle_input.txt")
+    rockPaperScissors(input)
     return 0
 
 
