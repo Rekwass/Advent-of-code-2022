@@ -2,7 +2,7 @@
 #include <sstream>
 #include <string>
 
-void getNumberFromLine(std::string& str, int& startFirst, int& endFirst, int& startSecond, int& endSecond)
+static void getNumberFromLine(std::string& str, int& startFirst, int& endFirst, int& startSecond, int& endSecond)
 {
 
     std::stringstream ss;

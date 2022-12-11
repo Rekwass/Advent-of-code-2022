@@ -25,8 +25,8 @@ def readFile(filePath: str) -> List[str]:
 def main() -> int:
     # input: List[str] = readFile("day9/puzzle_input.txt")
     # ropeBridge(input)
-    input: List[str] = readFile("day2/puzzle_input.txt")
-    rockPaperScissors(input)
+    input: List[str] = readFile("advent_of_code_1.txt")
+    calorieCounting(input)
     return 0
 
 
