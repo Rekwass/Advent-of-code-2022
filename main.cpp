@@ -35,7 +35,7 @@ int main(const int ac, const char* av[])
 
     // NOLINTNEXTLINE
     const int selectedDay = std::atoi(av[1]) - 1;
-    void (*functionPointer[5])() = {&calorieCounting, &calorieCounting, &rucksackReorganization, &campCleanup, &supplyStacks};
+    void (*functionPointer[6])() = {&calorieCounting, &calorieCounting, &rucksackReorganization, &campCleanup, &supplyStacks, &tuningTrouble};
 
     (*functionPointer[selectedDay])();
     return 0;

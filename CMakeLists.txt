@@ -29,6 +29,7 @@ set(PROJECT_SOURCES
     day3/rucksackReorganization.cpp
     day4/campCleanup.cpp
     day5/supplyStacks.cpp
+    day6/tuningTrouble.cpp
 )
 
 set(INCLUDES
