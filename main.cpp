@@ -6,7 +6,7 @@ bool displayHelp(const int ac, const char* const av[])
 {
     bool helpDisplayed = false;
     if (ac == 1 or (ac == 2 and (strcmp(av[1], "-h") == 0 or (strcmp(av[1], "--help") == 0)))) {
-        std::cout << "À L'AIDE" << std::endl;
+        std::cout << "To display a selected day type `./adventOfCode2022 n` with `n` being the day number" << std::endl;
         helpDisplayed = true;
     }
     return helpDisplayed;
@@ -33,7 +33,10 @@ int main(const int ac, const char* av[])
         return 1;
     }
 
+    // NOLINTNEXTLINE
+    const int selectedDay = std::atoi(av[1]) - 1;
     void (*functionPointer[5])() = {&calorieCounting, &calorieCounting, &rucksackReorganization, &campCleanup, &supplyStacks};
-    (*functionPointer[4])();
+
+    (*functionPointer[selectedDay])();
     return 0;
 }
