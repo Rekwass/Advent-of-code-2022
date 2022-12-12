@@ -1,16 +1,17 @@
 #include <iostream>
 #include <sstream>
 #include <string>
+#include <vector>
 
 struct file {
     std::string fileName;
     int size = 0;
 };
 
-// struct directory {
-//     std::vector<file> files{};
-//     std::string parentDirectory;
-// };
+struct directory {
+    std::vector<file> files;
+    std::string parentDirectory;
+};
 
 static void getNumberFromLine(std::string& line, int& nbBox, int& fromBoxPile, int& toBoxPile)
 {

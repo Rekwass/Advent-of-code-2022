@@ -33,6 +33,7 @@ set(PROJECT_SOURCES
     day6/tuningTrouble.cpp
     day7/noSpaceLeftOnDevice.cpp
     day8/treetopTreeHouse.cpp
+    day12/hillClimbingAlgorithm.cpp
 )
 
 set(INCLUDES
