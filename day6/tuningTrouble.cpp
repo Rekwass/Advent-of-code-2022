@@ -1,8 +1,5 @@
 #include <iostream>
-#include <sstream>
 #include <string>
-
-// if (s.find('[') != std::string::npos)
 
 bool checkStartOfPacket(std::string& dataStream, int i)
 {
