@@ -106,11 +106,11 @@ void addPosition(Position tailPosition, std::vector<Position>& positions)
     positions.emplace_back(tailPosition);
 }
 
-void moveTail(Position& headPosition, Position& tailPosition, std::vector<std::string>& map)
+void moveTail(Position& headPosition, Position& tailPosition, std::vector<std::string>& map, char c)
 {
     if (isHeadNear(headPosition, tailPosition)) {
         if (not isOnPosition(headPosition, tailPosition)) {
-            map[tailPosition.y][tailPosition.x] = 'T';
+            map[tailPosition.y][tailPosition.x] = c;
         }
         return;
     }
@@ -130,7 +130,7 @@ void moveTail(Position& headPosition, Position& tailPosition, std::vector<std::s
         tailPosition.x -= 1;
     }
 
-    map[tailPosition.y][tailPosition.x] = 'T';
+    map[tailPosition.y][tailPosition.x] = c;
 }
 
 void moveHead(Position& headPosition, std::string& line, std::vector<std::string>& map)
@@ -150,6 +150,22 @@ void moveHead(Position& headPosition, std::string& line, std::vector<std::string
     map[headPosition.y][headPosition.x] = 'H';
 }
 
+void displayFinalMap(std::vector<std::string>& lines, std::vector<Position>& positions)
+{
+    std::vector<std::string> map = {};
+
+    initMap(lines, map);
+
+    for (const auto& position : positions) {
+        map[position.y][position.x] = '#';
+    }
+    map[getMaxMove(lines, "U", "D")][getMaxMove(lines, "L", "R")] = 's';
+
+    for (const auto& line : map) {
+        std::cout << line << std::endl;
+    }
+}
+
 void ropeBridge()
 {
     std::vector<std::string> lines = {};
@@ -164,8 +180,16 @@ void ropeBridge()
     }
 
     Position headPosition = {.x = getMaxMove(lines, "L", "R"), .y = getMaxMove(lines, "U", "D")};
-    Position tailPosition = {.x = getMaxMove(lines, "L", "R"), .y = getMaxMove(lines, "U", "D")};
-    Position spawnPosition = {.x = getMaxMove(lines, "L", "R"), .y = getMaxMove(lines, "U", "D")};
+    Position firstBodyPosition = {.x = headPosition.x, .y = headPosition.y};
+    Position secondBodyPosition = {.x = headPosition.x, .y = headPosition.y};
+    Position thirdBodyPosition = {.x = headPosition.x, .y = headPosition.y};
+    Position fourthBodyPosition = {.x = headPosition.x, .y = headPosition.y};
+    Position fifthBodyPosition = {.x = headPosition.x, .y = headPosition.y};
+    Position sixthBodyPosition = {.x = headPosition.x, .y = headPosition.y};
+    Position seventhBodyPosition = {.x = headPosition.x, .y = headPosition.y};
+    Position eighthBodyPosition = {.x = headPosition.x, .y = headPosition.y};
+    Position ninthBodyPosition = {.x = headPosition.x, .y = headPosition.y};
+    Position spawnPosition = {.x = headPosition.x, .y = headPosition.y};
 
     initMap(lines, map);
 
@@ -184,9 +208,17 @@ void ropeBridge()
             //     std::cout << ma << std::endl;
             // }
             moveHead(headPosition, line, map);
-            moveTail(headPosition, tailPosition, map);
-            addPosition(tailPosition, positions);
-            displaySpawn(headPosition, tailPosition, spawnPosition, map);
+            moveTail(headPosition, firstBodyPosition, map, '1');
+            moveTail(firstBodyPosition, secondBodyPosition, map, '2');
+            moveTail(secondBodyPosition, thirdBodyPosition, map, '3');
+            moveTail(thirdBodyPosition, fourthBodyPosition, map, '4');
+            moveTail(fourthBodyPosition, fifthBodyPosition, map, '5');
+            moveTail(fifthBodyPosition, sixthBodyPosition, map, '6');
+            moveTail(sixthBodyPosition, seventhBodyPosition, map, '7');
+            moveTail(seventhBodyPosition, eighthBodyPosition, map, '8');
+            moveTail(eighthBodyPosition, ninthBodyPosition, map, '9');
+            addPosition(ninthBodyPosition, positions);
+            displaySpawn(headPosition, thirdBodyPosition, spawnPosition, map);
         }
         ss.str(std::string());
         ss.clear();
@@ -197,5 +229,57 @@ void ropeBridge()
     //     std::cout << ma << std::endl;
     // }
     // std::cout << "===========" << std::endl;
+    displayFinalMap(lines, positions);
     std::cout << positions.size() << std::endl;
 }
+
+// void ropeBridge()
+// {
+//     std::vector<std::string> lines = {};
+//     std::vector<std::string> map = {};
+//     std::vector<Position> positions = {};
+//     std::stringstream ss;
+//     std::string word;
+//     int repeat = 0;
+//
+//     for (std::string line; std::getline(std::cin, line);) {
+//         lines.emplace_back(line);
+//     }
+//
+//     Position headPosition = {.x = getMaxMove(lines, "L", "R"), .y = getMaxMove(lines, "U", "D")};
+//     Position tailPosition = {.x = getMaxMove(lines, "L", "R"), .y = getMaxMove(lines, "U", "D")};
+//     Position spawnPosition = {.x = getMaxMove(lines, "L", "R"), .y = getMaxMove(lines, "U", "D")};
+//
+//     initMap(lines, map);
+//
+//     // std::cout << headPosition.y << std::endl;
+//     // std::cout << headPosition.x << std::endl;
+//     map[headPosition.y][headPosition.x] = 'H';
+//
+//     for (auto& line : lines) {
+//         ss << line;
+//         ss >> word;
+//         ss >> word;
+//         repeat = std::atoi(word.c_str());
+//         for (int i = 0; i < repeat; ++i) {
+//             // std::cout << "===========" << std::endl;
+//             // for (std::string& ma : map) {
+//             //     std::cout << ma << std::endl;
+//             // }
+//             moveHead(headPosition, line, map);
+//             moveTail(headPosition, tailPosition, map);
+//             addPosition(tailPosition, positions);
+//             displaySpawn(headPosition, tailPosition, spawnPosition, map);
+//         }
+//         ss.str(std::string());
+//         ss.clear();
+//         word.clear();
+//     }
+//     // std::cout << "===========" << std::endl;
+//     // for (std::string& ma : map) {
+//     //     std::cout << ma << std::endl;
+//     // }
+//     // std::cout << "===========" << std::endl;
+//     displayFinalMap(lines, positions);
+//     std::cout << positions.size() << std::endl;
+// }
