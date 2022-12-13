@@ -8,5 +8,6 @@ void supplyStacks();
 void tuningTrouble();
 void noSpaceLeftOnDevice();
 void treetopTreeHouse();
+void ropeBridge();
 
 void hillClimbingAlgorithm();
