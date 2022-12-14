@@ -9,5 +9,6 @@ void tuningTrouble();
 void noSpaceLeftOnDevice();
 void treetopTreeHouse();
 void ropeBridge();
+void cathodeRayTube();
 
 void hillClimbingAlgorithm();

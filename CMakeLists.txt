@@ -34,6 +34,7 @@ set(PROJECT_SOURCES
     day7/noSpaceLeftOnDevice.cpp
     day8/treetopTreeHouse.cpp
     day9/ropeBridge.cpp
+    day10/cathodeRayTube.cpp
     day12/hillClimbingAlgorithm.cpp
 )
 
