@@ -35,6 +35,7 @@ set(PROJECT_SOURCES
     day8/treetopTreeHouse.cpp
     day9/ropeBridge.cpp
     day10/cathodeRayTube.cpp
+    day11/monkeyInTheMiddle.cpp
     day12/hillClimbingAlgorithm.cpp
 )
 

@@ -10,5 +10,5 @@ void noSpaceLeftOnDevice();
 void treetopTreeHouse();
 void ropeBridge();
 void cathodeRayTube();
-
+void monkeyInTheMiddle();
 void hillClimbingAlgorithm();
