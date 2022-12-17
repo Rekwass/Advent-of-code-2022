@@ -12,3 +12,4 @@ void ropeBridge();
 void cathodeRayTube();
 void monkeyInTheMiddle();
 void hillClimbingAlgorithm();
+void distressSignal();

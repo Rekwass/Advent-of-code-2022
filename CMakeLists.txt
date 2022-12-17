@@ -37,6 +37,7 @@ set(PROJECT_SOURCES
     day10/cathodeRayTube.cpp
     day11/monkeyInTheMiddle.cpp
     day12/hillClimbingAlgorithm.cpp
+    day13/distressSignal.cpp
 )
 
 set(INCLUDES
