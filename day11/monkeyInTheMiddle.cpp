@@ -4,7 +4,7 @@
 #include <vector>
 
 struct Monkey {
-    std::vector<int> items;
+    std::vector<unsigned long long> items;
     std::string firstNumber;
     std::string secondNumber;
     char operation;
@@ -117,9 +117,9 @@ void initMonkeys(std::vector<std::string>& lines, std::vector<Monkey>& monkeys)
     // }
 }
 
-int calculateNumbers(int a, int b, char op)
+unsigned long long calculateNumbers(unsigned long long a, unsigned long long b, char op)
 {
-    int result = 0;
+    unsigned long long result = 0;
 
     if (op == '+') {
         // std::cout << "    Worry level increases by " << b << " to " << a + b << "." << std::endl;
@@ -135,9 +135,9 @@ int calculateNumbers(int a, int b, char op)
     return result;
 }
 
-int calculateWorryLevel(int item, std::string& firstNumber, char operation, std::string& secondNumber)
+unsigned long long calculateWorryLevel(int item, std::string& firstNumber, char operation, std::string& secondNumber)
 {
-    int worryLevel = 0;
+    unsigned long long worryLevel = 0;
 
     if (firstNumber == "old" and secondNumber not_eq "old") {
         worryLevel = calculateNumbers(item, std::atoi(secondNumber.c_str()), operation);
@@ -152,21 +152,21 @@ int calculateWorryLevel(int item, std::string& firstNumber, char operation, std:
     return worryLevel;
 }
 
-bool isDivisible(int item, int divider)
-{
-    int tmp = divider;
-
-    if (tmp == item) {
-        return true;
-    }
-    while (tmp < item) {
-        tmp += divider;
-        if (tmp == item) {
-            return true;
-        }
-    }
-    return false;
-}
+// bool isDivisible(int item, int divider)
+// {
+//     int tmp = divider;
+//
+//     if (tmp == item) {
+//         return true;
+//     }
+//     while (tmp < item) {
+//         tmp += divider;
+//         if (tmp == item) {
+//             return true;
+//         }
+//     }
+//     return false;
+// }
 
 void monkeyInTheMiddle()
 {
@@ -174,7 +174,7 @@ void monkeyInTheMiddle()
     std::vector<Monkey> monkeys = {};
     std::stringstream ss;
     std::string word;
-    int nbRound = 20;
+    int nbRound = 10000;
 
     for (std::string line; std::getline(std::cin, line);) {
         lines.emplace_back(line);
@@ -182,6 +182,10 @@ void monkeyInTheMiddle()
 
     initMonkeys(lines, monkeys);
 
+    int modulo = 1;
+    for (auto& monkey : monkeys) {
+        modulo *= monkey.divideBy;
+    }
     int d = 0;
     for (int round = 0; round < nbRound; ++round) {
         for (auto& monkey : monkeys) {
@@ -190,9 +194,9 @@ void monkeyInTheMiddle()
                 // std::cout << "  Monkey inspects an item with a worry level of " << *it << "." << std::endl;
                 ++monkey.nbInspection;
                 *it = calculateWorryLevel(*it, monkey.firstNumber, monkey.operation, monkey.secondNumber);
-                *it /= 3;
-                // std::cout << "    Monkey gets bored with item. Worry level is divided by 3 to " << *it << "." << std::endl;
-                if (isDivisible(*it, monkey.divideBy)) {
+                // *it /= 3;
+                *it %= modulo;
+                if (*it % monkey.divideBy == 0) {
                     // std::cout << "    Current worry level is not divisible by " << monkey.divideBy << "." << std::endl;
                     // std::cout << "    Item with worry level " << *it << " is thrown to monkey " << monkey.condTrue << "." << std::endl;
                     monkeys.at(monkey.condTrue).items.emplace_back(*it);
@@ -210,10 +214,13 @@ void monkeyInTheMiddle()
 
     d = 0;
 
-    int first = 0;
-    int second = 0;
-    int maxInspection = 0;
+    unsigned long long first = 0;
+    unsigned long long second = 0;
+    unsigned long long maxInspection = 0;
 
+    for (auto& monkey : monkeys) {
+        std::cout << "Nb inspection Monkey : " << monkey.nbInspection << std::endl;
+    }
     for (auto& monkey : monkeys) {
         if (monkey.nbInspection > maxInspection) {
             maxInspection = monkey.nbInspection;
@@ -244,6 +251,7 @@ void monkeyInTheMiddle()
         std::cout << "[" << it->nbInspection << "]" << std::endl;
     }
 
+    unsigned long long result = first * second;
     std::cout << "first = " << first << std::endl;
     std::cout << "second = " << second << std::endl;
     std::cout << "result = " << first * second << std::endl;
