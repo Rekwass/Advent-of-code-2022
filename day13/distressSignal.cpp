@@ -10,6 +10,11 @@
 
 using Packet = int;
 
+struct Packets {
+    std::string packetString;
+    std::vector<Packet> packets{};
+};
+
 enum PacketRetValue {
     FIRST_BIGGER = (-1),
     SECOND_BIGGER = 1,
@@ -48,9 +53,7 @@ PacketRetValue compareListWithInt(std::vector<Packet>& firstPackets, int secondN
 {
     int firstNumber = firstPackets.at(i);
 
-    std::cout << firstNumber << " and " << secondNumber << std::endl;
     if (firstNumber == -1) {
-        std::cout << firstNumber << " and " << secondNumber << std::endl;
         return (compareListWithInt(firstPackets, secondNumber, ++i));
     } else if (firstNumber == -2 or firstNumber < secondNumber) {
         return SECOND_BIGGER;
@@ -82,7 +85,7 @@ int comparePackets(std::vector<Packet>& firstPackets, std::vector<Packet>& secon
     for (; i < firstPackets.size() and j < secondPackets.size(); ++i, ++j) {
         firstNumber = firstPackets.at(i);
         secondNumber = secondPackets.at(j);
-        std::cout << firstNumber << " and " << secondNumber << std::endl;
+        // std::cout << firstNumber << " and " << secondNumber << std::endl;
         // INT and INT
         if (firstNumber >= 0 and secondNumber >= 0) {
             comparaisonResult = compareIntWithInt(firstNumber, secondNumber);
@@ -112,50 +115,170 @@ int comparePackets(std::vector<Packet>& firstPackets, std::vector<Packet>& secon
             return pairId;
         }
     }
-    std::cout << "EQUAL ????????????????" << std::endl;
     return pairId;
 }
 
-void displayPackets(std::vector<Packet>& packets)
+// void displayPackets(std::vector<Packet>& packets)
+// {
+//     std::string prefix;
+//     std::cout << "[";
+//     for (auto& packet : packets) {
+//         std::cout << prefix << packet;
+//         prefix = ", ";
+//     }
+//     std::cout << "]" << std::endl;
+// }
+
+void addPacket(std::vector<Packets>& packets, std::string& line)
 {
-    std::string prefix;
-    std::cout << "[";
+    Packets packet{.packetString = line};
+
+    initPacket(line, packet.packets);
+
+    packets.emplace_back(packet);
+}
+
+void displayAllPackets(std::vector<Packets>& packets)
+{
     for (auto& packet : packets) {
-        std::cout << prefix << packet;
-        prefix = ", ";
+        std::cout << "Packet string : " << std::endl;
+        std::cout << packet.packetString << std::endl;
+        std::cout << "Packet converted : " << std::endl;
+        std::string prefix;
+        std::cout << "[";
+        for (auto& subPacket : packet.packets) {
+            std::cout << prefix << subPacket;
+            prefix = ", ";
+        }
+        std::cout << "]" << std::endl
+                  << std::endl;
     }
-    std::cout << "]" << std::endl;
+}
+
+void displayPackets(std::vector<Packets>& packets)
+{
+    for (auto& packet : packets) {
+        std::cout << packet.packetString << std::endl;
+    }
+}
+
+void initPackets(std::vector<Packets>& packets)
+{
+    for (std::string line; std::getline(std::cin, line);) {
+        addPacket(packets, line);
+        std::getline(std::cin, line);
+        addPacket(packets, line);
+        std::getline(std::cin, line);
+    }
+    std::string specialPacket = "[[2]]";
+    addPacket(packets, specialPacket);
+    specialPacket = "[[6]]";
+    addPacket(packets, specialPacket);
+}
+
+bool arePacketsSorted(std::vector<Packets>& packets)
+{
+    for (int i = 0; i < packets.size() - 1; ++i) {
+        if (comparePackets(packets.at(i).packets, packets.at(i + 1).packets, 1) == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+
+void sortPackets(std::vector<Packets>& packets)
+{
+    Packets tmp = {};
+
+    while (not arePacketsSorted(packets)) {
+        for (int i = 0; i < packets.size() - 1;) {
+            if (comparePackets(packets.at(i).packets, packets.at(i + 1).packets, 1) == 0) {
+                tmp = packets.at(i);
+                packets.at(i) = packets.at(i + 1);
+                packets.at(i + 1) = tmp;
+                i = 0;
+            } else {
+                ++i;
+            }
+        }
+    }
+}
+
+bool samePacket(std::vector<Packet>& firstPacket, std::vector<Packet>& secondPacket)
+{
+    if (firstPacket.size() not_eq secondPacket.size()) {
+        return false;
+    }
+    for (int i = 0; i < firstPacket.size(); ++i) {
+        if (firstPacket.at(i) not_eq secondPacket.at(i)) {
+            return false;
+        }
+    }
+    return true;
+}
+
+int findPacket(std::vector<Packets>& packets, std::vector<Packet>& packetToFind)
+{
+    int index = 1;
+
+    for (auto& packet : packets) {
+        if (samePacket(packet.packets, packetToFind)) {
+            return index;
+        }
+        ++index;
+    }
+
+    return -1;
 }
 
 void distressSignal()
 {
-    std::stringstream ss;
-    std::string word;
-    std::vector<Packet> firstPackets;
-    std::vector<Packet> secondPackets;
-    int pairId = 1;
-    int validPackets = 0;
+    std::vector<Packets> packets;
+    std::vector<Packet> firstSpecialPackets = {-1, -1, 2, -2, -2};
+    std::vector<Packet> secondSpecialPackets = {-1, -1, 6, -2, -2};
+    int firstSpecialPacket = 0;
+    int secondSpecialPacket = 0;
 
-    int result = 0;
-    std::string tmp;
-    for (std::string line; std::getline(std::cin, line);) {
-        initPacket(line, firstPackets);
-        tmp = line;
-        std::getline(std::cin, line);
-        initPacket(line, secondPackets);
-        result = comparePackets(firstPackets, secondPackets, pairId);
-        if (result != 0) {
-            std::cout << "== Pair " << pairId << " ==" << std::endl;
-            std::cout << tmp << std::endl
-                      << line << std::endl;
-            std::cout << "inputs are" << (result == 0 ? " NOT " : " ") << "in the right order" << std::endl
-                      << std::endl;
-        }
-        std::getline(std::cin, line);
-        validPackets += comparePackets(firstPackets, secondPackets, pairId);
-        firstPackets.clear();
-        secondPackets.clear();
-        ++pairId;
-    }
-    std::cout << "ValidPackets " << validPackets << std::endl;
+    initPackets(packets);
+    sortPackets(packets);
+    firstSpecialPacket = findPacket(packets, firstSpecialPackets);
+    secondSpecialPacket = findPacket(packets, secondSpecialPackets);
+
+    displayPackets(packets);
+    std::cout << "firstSpecialPacket index : " << firstSpecialPacket << std::endl;
+    std::cout << "secondSpecialPacket index : " << secondSpecialPacket << std::endl;
+    std::cout << "result = " << firstSpecialPacket * secondSpecialPacket << std::endl;
 }
+
+// void distressSignal()
+// {
+//     std::stringstream ss;
+//     std::string word;
+//     std::vector<Packet> firstPackets;
+//     std::vector<Packet> secondPackets;
+//     int pairId = 1;
+//     int validPackets = 0;
+//
+//     int result = 0;
+//     std::string tmp;
+//     for (std::string line; std::getline(std::cin, line);) {
+//         initPacket(line, firstPackets);
+//         tmp = line;
+//         std::getline(std::cin, line);
+//         initPacket(line, secondPackets);
+//         result = comparePackets(firstPackets, secondPackets, pairId);
+//         if (result != 0) {
+//             std::cout << "== Pair " << pairId << " ==" << std::endl;
+//             std::cout << tmp << std::endl
+//                       << line << std::endl;
+//             std::cout << "inputs are" << (result == 0 ? " NOT " : " ") << "in the right order" << std::endl
+//                       << std::endl;
+//         }
+//         std::getline(std::cin, line);
+//         validPackets += comparePackets(firstPackets, secondPackets, pairId);
+//         firstPackets.clear();
+//         secondPackets.clear();
+//         ++pairId;
+//     }
+//     std::cout << "ValidPackets " << validPackets << std::endl;
+// }
