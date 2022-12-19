@@ -195,3 +195,6 @@ cython_debug/
 #Advent of code 2022
 adventOfCode2022
 compile_commands.json
+
+#Mac OS
+.DS_Store
