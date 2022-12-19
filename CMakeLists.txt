@@ -38,6 +38,7 @@ set(PROJECT_SOURCES
     day11/monkeyInTheMiddle.cpp
     day12/hillClimbingAlgorithm.cpp
     day13/distressSignal.cpp
+    day14/regolithReservoir.cpp
 )
 
 set(INCLUDES

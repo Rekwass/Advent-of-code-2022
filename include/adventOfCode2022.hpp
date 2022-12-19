@@ -13,3 +13,4 @@ void cathodeRayTube();
 void monkeyInTheMiddle();
 void hillClimbingAlgorithm();
 void distressSignal();
+void regolithReservoir();

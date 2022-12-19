@@ -36,7 +36,7 @@ int getMaxMove(std::vector<std::string>& lines, std::string add, std::string sub
     return std::abs(maxMove);
 }
 
-void initMap(std::vector<std::string>& lines, std::vector<std::string>& map)
+static void initMap(std::vector<std::string>& lines, std::vector<std::string>& map)
 {
     std::string mapRow;
     int maxUpMove = getMaxMove(lines, "U", "D");
