@@ -311,10 +311,8 @@ bool checkPositionInGivenDirection(std::deque<std::deque<Position>>& positionLis
 {
     position.x = positionLists.at(i).at(0).x + (distanceX * directionX);
     position.y = positionLists.at(i).at(0).y + (distanceY * directionY);
-    if (position.x >= 0 and position.x <= 4000000 and position.y >= 0 and position.y <= 4000000 and not inBeaconRange(position, positionLists, beaconDistanceList)) {
-        return true;
-    }
-    return false;
+
+    return position.x >= 0 and position.x <= 4000000 and position.y >= 0 and position.y <= 4000000 and not inBeaconRange(position, positionLists, beaconDistanceList);
 }
 
 void findDistressBeacon(std::deque<std::deque<Position>>& positionLists, std::deque<int>& beaconDistanceList, Position& position)
