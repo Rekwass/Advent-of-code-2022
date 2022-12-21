@@ -173,7 +173,7 @@ int countSand(std::vector<std::string>& map)
     return nbSandUnit;
 }
 
-void getInputFromStdin(std::vector<std::string>& lines)
+static void getInputFromStdin(std::vector<std::string>& lines)
 {
     for (std::string line; std::getline(std::cin, line);) {
         lines.emplace_back(line);

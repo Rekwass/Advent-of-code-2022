@@ -14,3 +14,4 @@ void monkeyInTheMiddle();
 void hillClimbingAlgorithm();
 void distressSignal();
 void regolithReservoir();
+void beaconExclusionZone();

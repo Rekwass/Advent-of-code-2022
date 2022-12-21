@@ -39,6 +39,7 @@ set(PROJECT_SOURCES
     day12/hillClimbingAlgorithm.cpp
     day13/distressSignal.cpp
     day14/regolithReservoir.cpp
+    day15/beaconExclusionZone.cpp
 )
 
 set(INCLUDES
