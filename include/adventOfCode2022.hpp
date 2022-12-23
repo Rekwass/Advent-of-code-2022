@@ -15,3 +15,5 @@ void hillClimbingAlgorithm();
 void distressSignal();
 void regolithReservoir();
 void beaconExclusionZone();
+void proboscideaVolcanium();
+void pyroclasticFlow();

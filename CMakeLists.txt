@@ -40,6 +40,8 @@ set(PROJECT_SOURCES
     day13/distressSignal.cpp
     day14/regolithReservoir.cpp
     day15/beaconExclusionZone.cpp
+    day16/proboscideaVolcanium.cpp
+    day17/pyroclasticFlow.cpp
 )
 
 set(INCLUDES

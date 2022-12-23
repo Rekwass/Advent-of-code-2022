@@ -1,5 +1,6 @@
 #include "adventOfCode2022.hpp"
 
+#include <array>
 #include <iostream>
 
 bool displayHelp(const int ac, const char* const av[])
@@ -18,8 +19,7 @@ bool checkArgs(const int ac, const char* const av[])
         std::cerr << "Invalid number of arguments" << std::endl;
         return false;
     }
-    // NOLINTNEXTLINE
-    const int selectedDay = std::atoi(av[1]);
+    const int selectedDay = std::stoi(av[1]);
     if (selectedDay < 1 or selectedDay > 25) {
         std::cerr << "Invalid argument, you must enter a number between 0 and 25" << std::endl;
         return false;
@@ -33,10 +33,9 @@ int main(const int ac, const char* av[])
         return 1;
     }
 
-    // NOLINTNEXTLINE
-    const int selectedDay = std::atoi(av[1]) - 1;
-    void (*functionPointer[15])() = {&calorieCounting, &rockPaperScissors, &rucksackReorganization, &campCleanup, &supplyStacks, &tuningTrouble, &noSpaceLeftOnDevice, &treetopTreeHouse, &ropeBridge, &cathodeRayTube, &monkeyInTheMiddle, &hillClimbingAlgorithm, &distressSignal, &regolithReservoir, &beaconExclusionZone};
+    const int selectedDay = std::stoi(av[1]) - 1;
 
-    (*functionPointer[selectedDay])();
+    std::array<std::function<void()>, 17> days = {&calorieCounting, &rockPaperScissors, &rucksackReorganization, &campCleanup, &supplyStacks, &tuningTrouble, &noSpaceLeftOnDevice, &treetopTreeHouse, &ropeBridge, &cathodeRayTube, &monkeyInTheMiddle, &hillClimbingAlgorithm, &distressSignal, &regolithReservoir, &beaconExclusionZone, &proboscideaVolcanium, &pyroclasticFlow};
+    days.at(selectedDay)();
     return 0;
 }
