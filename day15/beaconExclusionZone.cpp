@@ -1,4 +1,5 @@
 #include <deque>
+#include <fstream>
 #include <iostream>
 #include <sstream>
 
@@ -333,7 +334,7 @@ void findDistressBeacon(std::deque<std::deque<Position>>& positionLists, std::de
     }
 }
 
-void beaconExclusionZone()
+void beaconExclusionZone(std::ifstream& fileContent)
 {
     std::deque<std::string> lines;
     std::deque<std::deque<Position>> positionLists;

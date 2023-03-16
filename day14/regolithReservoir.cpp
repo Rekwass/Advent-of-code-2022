@@ -1,4 +1,5 @@
 #include <cstddef>
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -283,7 +284,7 @@ void fixPositionLists2(std::vector<std::vector<Position>>& positionLists, Positi
     }
 }
 
-void regolithReservoir()
+void regolithReservoir(std::ifstream& fileContent)
 {
     std::vector<std::string> map;
     std::vector<std::string> lines;

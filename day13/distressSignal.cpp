@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -23,12 +24,11 @@ enum PacketRetValue {
 
 void initPacket(std::string& line, std::vector<Packet>& packets)
 {
-    char* pEnd{};
     for (int i = 0; line[i] != '\0'; ++i) {
         if (line[i] == '[') {
             packets.emplace_back(-1);
         } else if (isdigit(line[i]) != 0) {
-            packets.emplace_back(std::strtol(&line[i], &pEnd, 10));
+            packets.emplace_back(std::stoi(&line[i]));
         } else if (line[i] == ']') {
             packets.emplace_back(-2);
         }
@@ -232,7 +232,7 @@ int findPacket(std::vector<Packets>& packets, std::vector<Packet>& packetToFind)
     return -1;
 }
 
-void distressSignal()
+void distressSignal(std::ifstream& fileContent)
 {
     std::vector<Packets> packets;
     std::vector<Packet> firstSpecialPackets = {-1, -1, 2, -2, -2};

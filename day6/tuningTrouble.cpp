@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -29,7 +30,7 @@ bool checkStartOfMessage(std::string& dataStream, int i)
     return true;
 }
 
-void tuningTrouble()
+void tuningTrouble(std::ifstream& fileContent)
 {
     std::string dataStream;
     std::cin >> dataStream;

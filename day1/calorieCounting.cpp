@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -23,21 +24,21 @@ void addCalories(const int totalCalories, int topThreeCalories[3])
     }
 }
 
-void calorieCounting()
+void calorieCounting(std::ifstream& fileContent)
 {
     int calorie = 0;
     int totalCalories = 0;
     int mostCalories = 0;
     int topThreeCalories[3] = {0};
-    char* pEnd{};
+    std::string line;
 
-    for (std::string line; std::getline(std::cin, line);) {
+    while (std::getline(fileContent, line)) {
         if (line.empty()) {
             addCalories(totalCalories, topThreeCalories);
             mostCalories = mostCalories < totalCalories ? totalCalories : mostCalories;
             totalCalories = 0;
         } else {
-            calorie = std::strtol(line.c_str(), &pEnd, 10);
+            calorie = std::stoi(line);
             totalCalories += calorie;
         }
     }

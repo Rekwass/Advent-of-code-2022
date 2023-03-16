@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -69,7 +70,7 @@ void moveBoxesFromPileToPile(std::string boxPiles[9], int nbBox, int fromBoxPile
     boxPiles[fromBoxPile].erase(boxPiles[fromBoxPile].length() - nbBox, nbBox);
 }
 
-void supplyStacks()
+void supplyStacks(std::ifstream& fileContent)
 {
     std::string boxPiles[9];
     int nbBox = 0;

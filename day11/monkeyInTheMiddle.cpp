@@ -144,13 +144,13 @@ unsigned long long calculateWorryLevel(int item, std::string& firstNumber, char 
     char* pEnd{};
 
     if (firstNumber == "old" and secondNumber not_eq "old") {
-        worryLevel = calculateNumbers(item, std::strtol(secondNumber.c_str(), &pEnd, 10), operation);
+        worryLevel = calculateNumbers(item, std::stoi(secondNumber), operation);
     } else if (firstNumber not_eq "old" and secondNumber == "old") {
-        worryLevel = calculateNumbers(std::strtol(firstNumber.c_str(), &pEnd, 10), item, operation);
+        worryLevel = calculateNumbers(std::stoi(firstNumber), item, operation);
     } else if (firstNumber == "old" and secondNumber == "old") {
         worryLevel = calculateNumbers(item, item, operation);
     } else if (firstNumber not_eq "old" and secondNumber not_eq "old") {
-        worryLevel = calculateNumbers(std::strtol(firstNumber.c_str(), &pEnd, 10), std::strtol(secondNumber.c_str(), &pEnd, 10), operation);
+        worryLevel = calculateNumbers(std::stoi(firstNumber), std::stoi(secondNumber), operation);
     }
 
     return worryLevel;
@@ -172,7 +172,7 @@ unsigned long long calculateWorryLevel(int item, std::string& firstNumber, char 
 //     return false;
 // }
 
-void monkeyInTheMiddle()
+void monkeyInTheMiddle(std::ifstream& fileContent)
 {
     std::vector<std::string> lines = {};
     std::vector<Monkey> monkeys = {};

@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -167,7 +168,7 @@ void displayFinalMap(std::vector<std::string>& lines, std::vector<Position>& pos
     }
 }
 
-void ropeBridge()
+void ropeBridge(std::ifstream& fileContent)
 {
     std::vector<std::string> lines = {};
     std::vector<std::string> map = {};
@@ -175,7 +176,6 @@ void ropeBridge()
     std::stringstream ss;
     std::string word;
     int repeat = 0;
-    char* pEnd{};
 
     for (std::string line; std::getline(std::cin, line);) {
         lines.emplace_back(line);
@@ -203,7 +203,7 @@ void ropeBridge()
         ss << line;
         ss >> word;
         ss >> word;
-        repeat = std::strtol(word.c_str(), &pEnd, 10);
+        repeat = std::stoi(word.c_str());
         for (int i = 0; i < repeat; ++i) {
             // std::cout << "===========" << std::endl;
             // for (std::string& ma : map) {

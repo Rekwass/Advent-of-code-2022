@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -124,7 +125,7 @@ int getNbVisible(std::vector<std::string>& trees, int i, int j)
     return upScore * rightScore * downScore * leftScore;
 }
 
-void treetopTreeHouse()
+void treetopTreeHouse(std::ifstream& fileContent)
 {
     std::vector<std::string> trees = {};
     int nbVisible = 0;

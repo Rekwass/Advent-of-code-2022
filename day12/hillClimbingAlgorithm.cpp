@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -168,7 +169,7 @@ void applySolution(std::vector<std::string>& heightMap, std::vector<std::vector<
     }
 }
 
-void hillClimbingAlgorithm()
+void hillClimbingAlgorithm(std::ifstream& fileContent)
 {
     std::vector<std::string> heightMap = {};
     std::vector<std::vector<int>> pathMap = {};

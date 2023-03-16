@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <string>
 
@@ -36,7 +37,7 @@ char getItemFromThirdRucksack(const std::string& items, const std::string& third
     return -1;
 }
 
-void rucksackReorganization()
+void rucksackReorganization(std::ifstream& fileContent)
 {
     char item = 0;
     int score = 0;

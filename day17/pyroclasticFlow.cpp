@@ -1,5 +1,6 @@
 #include <array>
 #include <deque>
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <vector>
@@ -160,7 +161,7 @@ static int getTowerHeight(std::deque<std::string>& map)
     return -1;
 }
 
-void pyroclasticFlow()
+void pyroclasticFlow(std::ifstream& fileContent)
 {
     std::deque<std::string> lines;
     const std::vector<std::string> firstRock = {"..@@@@."};

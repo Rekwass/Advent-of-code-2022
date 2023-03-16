@@ -1,6 +1,7 @@
 #include "adventOfCode2022.hpp"
 
 #include <array>
+#include <fstream>
 #include <iostream>
 
 bool displayHelp(const int ac, const char* const av[])
@@ -27,6 +28,14 @@ bool checkArgs(const int ac, const char* const av[])
     return true;
 }
 
+std::string getContentFromFile(std::string& fileName)
+{
+    std::ifstream ifs(fileName);
+    std::string content((std::istreambuf_iterator<char>(ifs)),
+        (std::istreambuf_iterator<char>()));
+    return content;
+}
+
 int main(const int ac, const char* av[])
 {
     if (displayHelp(ac, av) or not checkArgs(ac, av)) {
@@ -34,8 +43,14 @@ int main(const int ac, const char* av[])
     }
 
     const int selectedDay = std::stoi(av[1]) - 1;
+    std::string puzzleInputPath = "day";
+    puzzleInputPath += av[1];
+    puzzleInputPath += "/puzzle_input.txt";
 
-    std::array<std::function<void()>, 17> days = {&calorieCounting, &rockPaperScissors, &rucksackReorganization, &campCleanup, &supplyStacks, &tuningTrouble, &noSpaceLeftOnDevice, &treetopTreeHouse, &ropeBridge, &cathodeRayTube, &monkeyInTheMiddle, &hillClimbingAlgorithm, &distressSignal, &regolithReservoir, &beaconExclusionZone, &proboscideaVolcanium, &pyroclasticFlow};
-    days.at(selectedDay)();
+    std::ifstream fileContent(puzzleInputPath);
+
+    std::array<std::function<void(std::ifstream & fileContent)>, 17>
+        days = {&calorieCounting, &rockPaperScissors, &rucksackReorganization, &campCleanup, &supplyStacks, &tuningTrouble, &noSpaceLeftOnDevice, &treetopTreeHouse, &ropeBridge, &cathodeRayTube, &monkeyInTheMiddle, &hillClimbingAlgorithm, &distressSignal, &regolithReservoir, &beaconExclusionZone, &proboscideaVolcanium, &pyroclasticFlow};
+    days.at(selectedDay)(fileContent);
     return 0;
 }

@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -43,7 +44,7 @@ void formatLine(std::string& line)
     }
 }
 
-void campCleanup()
+void campCleanup(std::ifstream& fileContent)
 {
     int startFirst = 0;
     int endFirst = 0;

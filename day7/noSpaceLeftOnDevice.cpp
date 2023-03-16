@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -55,7 +56,7 @@ void removeLastDir(std::string& path)
     path.erase(pos);
 }
 
-void noSpaceLeftOnDevice()
+void noSpaceLeftOnDevice(std::ifstream& fileContent)
 {
     std::vector<std::string> lines = {};
     std::vector<std::string> paths = {};
@@ -65,7 +66,6 @@ void noSpaceLeftOnDevice()
     std::string path;
     int totalSize = 0;
     int i = -1;
-    char* pEnd{};
 
     for (std::string line; std::getline(std::cin, line);) {
         lines.emplace_back(line);
@@ -95,7 +95,7 @@ void noSpaceLeftOnDevice()
             ss >> word;
             sizes.at(i) += getDirSize(lines, word);
         } else {
-            sizes.at(i) += std::strtol(word.c_str(), &pEnd, 10);
+            sizes.at(i) += std::stoi(word.c_str());
         }
         ss.str(std::string());
         ss.clear();
