@@ -177,7 +177,7 @@ void ropeBridge(std::ifstream& fileContent)
     std::string word;
     int repeat = 0;
 
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; std::getline(fileContent, line);) {
         lines.emplace_back(line);
     }
 
@@ -235,7 +235,7 @@ void ropeBridge(std::ifstream& fileContent)
     std::cout << positions.size() << std::endl;
 }
 
-// void ropeBridge()
+// void ropeBridge(std::ifstream& fileContent)
 // {
 //     std::vector<std::string> lines = {};
 //     std::vector<std::string> map = {};
@@ -244,7 +244,7 @@ void ropeBridge(std::ifstream& fileContent)
 //     std::string word;
 //     int repeat = 0;
 //
-//     for (std::string line; std::getline(std::cin, line);) {
+//     for (std::string line; std::getline(fileContent, line);) {
 //         lines.emplace_back(line);
 //     }
 //
