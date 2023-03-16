@@ -45,10 +45,10 @@ void rucksackReorganization(std::ifstream& fileContent)
     std::string secondRucksack;
     std::string thirdRucksack;
 
-    while (std::cin >> firstRucksack) {
+    while (fileContent >> firstRucksack) {
         std::string items;
-        std::cin >> secondRucksack;
-        std::cin >> thirdRucksack;
+        fileContent >> secondRucksack;
+        fileContent >> thirdRucksack;
 
         getItemsInRucksack(items, firstRucksack, secondRucksack);
         item = getItemFromThirdRucksack(items, thirdRucksack);
@@ -62,12 +62,13 @@ void rucksackReorganization(std::ifstream& fileContent)
     std::cout << "Score : " << score << std::endl;
 }
 
-// void rucksackReorganization()
+// void rucksackReorganization(std::ifstream& fileContent)
 // {
 //     char item = 0;
 //     int score = 0;
+//     std::string line;
 //
-//     for (std::string line; std::getline(std::cin, line);) {
+//     while (std::getline(fileContent, line);) {
 //         item = getItemInRucksack(line);
 //         if (item >= 'A' and item <= 'Z') {
 //             score += item - 'A' + 27;
