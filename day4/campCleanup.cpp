@@ -51,8 +51,9 @@ void campCleanup(std::ifstream& fileContent)
     int startSecond = 0;
     int endSecond = 0;
     int score = 0;
+    std::string line;
 
-    for (std::string line; std::getline(std::cin, line);) {
+    while (std::getline(fileContent, line)) {
         formatLine(line);
         getNumberFromLine(line, startFirst, endFirst, startSecond, endSecond);
 
@@ -63,15 +64,16 @@ void campCleanup(std::ifstream& fileContent)
     std::cout << "Score : " << score << std::endl;
 }
 
-// void campCleanup()
+// void campCleanup(std::ifstream& fileContent)
 // {
 //     int startFirst = 0;
 //     int endFirst = 0;
 //     int startSecond = 0;
 //     int endSecond = 0;
 //     int score = 0;
+//     std::string line;
 //
-//     for (std::string line; std::getline(std::cin, line);) {
+//     for (line; std::getline(fileContent, line)) {
 //         formatLine(line);
 //         // std::cout << line << std::endl;
 //         getNumberFromLine(line, startFirst, endFirst, startSecond, endSecond);
