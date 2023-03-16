@@ -131,7 +131,7 @@ void treetopTreeHouse(std::ifstream& fileContent)
     int nbVisible = 0;
     int mostVisible = 0;
 
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; std::getline(fileContent, line);) {
         trees.emplace_back(line);
     }
 
