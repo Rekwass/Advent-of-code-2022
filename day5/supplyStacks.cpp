@@ -30,13 +30,13 @@ void reverseString(std::string& string)
     }
 }
 
-void initBoxPiles(std::string boxPiles[9])
+void initBoxPiles(std::ifstream& fileContent, std::string boxPiles[9])
 {
     int j = 1;
     std::string line;
-    std::getline(std::cin, line);
+    std::getline(fileContent, line);
 
-    for (; line[1] not_eq '1'; std::getline(std::cin, line)) {
+    for (; line[1] not_eq '1'; std::getline(fileContent, line)) {
         for (int i = 0; i < 9; ++i) {
             if (line[j] != ' ') {
                 boxPiles[i].append(1, line[j]);
@@ -45,7 +45,7 @@ void initBoxPiles(std::string boxPiles[9])
         }
         j = 1;
     }
-    std::getline(std::cin, line);
+    std::getline(fileContent, line);
     for (int i = 0; i < 9; ++i) {
         reverseString(boxPiles[i]);
     }
@@ -77,9 +77,10 @@ void supplyStacks(std::ifstream& fileContent)
     int fromBoxPile = 0;
     int toBoxPile = 0;
     std::string result;
+    std::string line;
 
-    initBoxPiles(boxPiles);
-    for (std::string line; std::getline(std::cin, line);) {
+    initBoxPiles(fileContent, boxPiles);
+    while (std::getline(fileContent, line)) {
         getNumberFromLine(line, nbBox, fromBoxPile, toBoxPile);
         moveBoxesFromPileToPile(boxPiles, nbBox, fromBoxPile - 1, toBoxPile - 1);
     }
