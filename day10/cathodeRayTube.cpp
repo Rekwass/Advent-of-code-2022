@@ -39,6 +39,7 @@ void cathodeRayTube()
     int registerX = 1;
     int signal = 0;
     int y = 0;
+    char* pEnd{};
 
     for (std::string line; std::getline(std::cin, line);) {
         lines.emplace_back(line);
@@ -65,7 +66,7 @@ void cathodeRayTube()
                 }
             }
             ss >> word;
-            registerX += std::atoi(word.c_str());
+            registerX += std::strtol(word.c_str(), &pEnd, 10);
         }
         if (registerX not_eq cycle % 40 && registerX + 1 not_eq cycle % 40 && registerX - 1 not_eq cycle % 40) {
             drawing[y][cycle % 40] = '.';

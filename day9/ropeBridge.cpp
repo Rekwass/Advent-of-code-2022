@@ -14,19 +14,20 @@ int getMaxMove(std::vector<std::string>& lines, std::string add, std::string sub
     std::string word;
     int move = 0;
     int maxMove = 0;
+    char* pEnd{};
 
     for (std::string& line : lines) {
         ss << line;
         ss >> word;
         if (word == add) {
             ss >> word;
-            move += std::atoi(word.c_str());
+            move += std::strtol(word.c_str(), &pEnd, 10);
             if (maxMove < move) {
                 maxMove = move;
             }
         } else if (word == substract) {
             ss >> word;
-            move -= std::atoi(word.c_str());
+            move -= std::strtol(word.c_str(), &pEnd, 10);
         }
         ss.str(std::string());
         ss.clear();
@@ -174,6 +175,7 @@ void ropeBridge()
     std::stringstream ss;
     std::string word;
     int repeat = 0;
+    char* pEnd{};
 
     for (std::string line; std::getline(std::cin, line);) {
         lines.emplace_back(line);
@@ -201,7 +203,7 @@ void ropeBridge()
         ss << line;
         ss >> word;
         ss >> word;
-        repeat = std::atoi(word.c_str());
+        repeat = std::strtol(word.c_str(), &pEnd, 10);
         for (int i = 0; i < repeat; ++i) {
             // std::cout << "===========" << std::endl;
             // for (std::string& ma : map) {

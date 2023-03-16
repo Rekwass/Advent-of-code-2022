@@ -29,6 +29,7 @@ void calorieCounting()
     int totalCalories = 0;
     int mostCalories = 0;
     int topThreeCalories[3] = {0};
+    char* pEnd{};
 
     for (std::string line; std::getline(std::cin, line);) {
         if (line.empty()) {
@@ -36,7 +37,7 @@ void calorieCounting()
             mostCalories = mostCalories < totalCalories ? totalCalories : mostCalories;
             totalCalories = 0;
         } else {
-            calorie = std::atoi(line.c_str());
+            calorie = std::strtol(line.c_str(), &pEnd, 10);
             totalCalories += calorie;
         }
     }

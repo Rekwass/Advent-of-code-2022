@@ -10,6 +10,7 @@ int getDirSize(std::vector<std::string> lines, std::string& dirName)
     std::string expectedLine = "$ cd " + dirName;
     int size = 0;
     int subFolder = 0;
+    char* pEnd{};
 
     for (auto it = lines.begin(); it != lines.end();) {
         if (*it == "dir " + dirName) {
@@ -34,7 +35,7 @@ int getDirSize(std::vector<std::string> lines, std::string& dirName)
             ss >> word;
             size += getDirSize(lines, word);
         } else {
-            size += std::atoi(word.c_str());
+            size += std::strtol(word.c_str(), &pEnd, 10);
         }
         ss.str(std::string());
         ss.clear();
@@ -64,6 +65,7 @@ void noSpaceLeftOnDevice()
     std::string path;
     int totalSize = 0;
     int i = -1;
+    char* pEnd{};
 
     for (std::string line; std::getline(std::cin, line);) {
         lines.emplace_back(line);
@@ -93,7 +95,7 @@ void noSpaceLeftOnDevice()
             ss >> word;
             sizes.at(i) += getDirSize(lines, word);
         } else {
-            sizes.at(i) += std::atoi(word.c_str());
+            sizes.at(i) += std::strtol(word.c_str(), &pEnd, 10);
         }
         ss.str(std::string());
         ss.clear();

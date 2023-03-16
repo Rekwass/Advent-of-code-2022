@@ -23,11 +23,12 @@ enum PacketRetValue {
 
 void initPacket(std::string& line, std::vector<Packet>& packets)
 {
+    char* pEnd{};
     for (int i = 0; line[i] != '\0'; ++i) {
         if (line[i] == '[') {
             packets.emplace_back(-1);
         } else if (isdigit(line[i]) != 0) {
-            packets.emplace_back(std::atoi(&line[i]));
+            packets.emplace_back(std::strtol(&line[i], &pEnd, 10));
         } else if (line[i] == ']') {
             packets.emplace_back(-2);
         }

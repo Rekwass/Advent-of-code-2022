@@ -41,28 +41,31 @@ void addOperation(std::vector<Monkey>& monkeys, int i, std::stringstream& ss, st
 
 void addDivisable(std::vector<Monkey>& monkeys, int i, std::stringstream& ss, std::string& word)
 {
+    char* pEnd{};
     ss >> word;
     ss >> word;
     ss >> word;
-    monkeys.at(i).divideBy = std::atoi(word.c_str());
+    monkeys.at(i).divideBy = std::strtol(word.c_str(), &pEnd, 10);
 }
 
 void addTrue(std::vector<Monkey>& monkeys, int i, std::stringstream& ss, std::string& word)
 {
+    char* pEnd{};
     ss >> word;
     ss >> word;
     ss >> word;
     ss >> word;
-    monkeys.at(i).condTrue = std::atoi(word.c_str());
+    monkeys.at(i).condTrue = std::strtol(word.c_str(), &pEnd, 10);
 }
 
 void addFalse(std::vector<Monkey>& monkeys, int i, std::stringstream& ss, std::string& word)
 {
+    char* pEnd{};
     ss >> word;
     ss >> word;
     ss >> word;
     ss >> word;
-    monkeys.at(i).condFalse = std::atoi(word.c_str());
+    monkeys.at(i).condFalse = std::strtol(word.c_str(), &pEnd, 10);
 }
 
 void initMonkeys(std::vector<std::string>& lines, std::vector<Monkey>& monkeys)
@@ -138,15 +141,16 @@ unsigned long long calculateNumbers(unsigned long long a, unsigned long long b, 
 unsigned long long calculateWorryLevel(int item, std::string& firstNumber, char operation, std::string& secondNumber)
 {
     unsigned long long worryLevel = 0;
+    char* pEnd{};
 
     if (firstNumber == "old" and secondNumber not_eq "old") {
-        worryLevel = calculateNumbers(item, std::atoi(secondNumber.c_str()), operation);
+        worryLevel = calculateNumbers(item, std::strtol(secondNumber.c_str(), &pEnd, 10), operation);
     } else if (firstNumber not_eq "old" and secondNumber == "old") {
-        worryLevel = calculateNumbers(std::atoi(firstNumber.c_str()), item, operation);
+        worryLevel = calculateNumbers(std::strtol(firstNumber.c_str(), &pEnd, 10), item, operation);
     } else if (firstNumber == "old" and secondNumber == "old") {
         worryLevel = calculateNumbers(item, item, operation);
     } else if (firstNumber not_eq "old" and secondNumber not_eq "old") {
-        worryLevel = calculateNumbers(std::atoi(firstNumber.c_str()), std::atoi(secondNumber.c_str()), operation);
+        worryLevel = calculateNumbers(std::strtol(firstNumber.c_str(), &pEnd, 10), std::strtol(secondNumber.c_str(), &pEnd, 10), operation);
     }
 
     return worryLevel;
