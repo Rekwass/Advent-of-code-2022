@@ -67,7 +67,7 @@ void noSpaceLeftOnDevice(std::ifstream& fileContent)
     int totalSize = 0;
     int i = -1;
 
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; std::getline(fileContent, line);) {
         lines.emplace_back(line);
     }
 
