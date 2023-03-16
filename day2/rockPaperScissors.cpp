@@ -18,23 +18,23 @@
 // PAPER SCISSORS
 // SCISSORS ROCK
 
-int getPlayValue(const char c)
+int getPlayValue(const char c, const char enemy)
 {
-    if (c == 'X') {
+    if ((c == 'X' and enemy == 'B') or (c == 'Y' and enemy == 'A') or (c == 'Z' and enemy == 'C')) {
         return 1;
     }
-    if (c == 'Y') {
+    if ((c == 'X' and enemy == 'C') or (c == 'Y' and enemy == 'B') or (c == 'Z' and enemy == 'A')) {
         return 2;
     }
     return 3;
 }
 
-int matchRPS(const char us, const char enemy)
+int matchRPS(const char us)
 {
-    if ((us == 'X' and enemy == 'B') or (us == 'Y' and enemy == 'C') or (us == 'Z' and enemy == 'A')) {
+    if (us == 'X') {
         return 0;
     }
-    if ((us == 'X' and enemy == 'A') or (us == 'Y' and enemy == 'B') or (us == 'Z' and enemy == 'C')) {
+    if (us == 'Y') {
         return 3;
     }
     return 6;
@@ -42,7 +42,7 @@ int matchRPS(const char us, const char enemy)
 
 int calculateScore(const char us, const char enemy)
 {
-    return (getPlayValue(us) + matchRPS(us, enemy));
+    return (getPlayValue(us, enemy) + matchRPS(us));
 }
 
 void rockPaperScissors(std::ifstream& fileContent)
