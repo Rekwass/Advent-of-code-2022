@@ -33,7 +33,7 @@ bool checkStartOfMessage(std::string& dataStream, int i)
 void tuningTrouble(std::ifstream& fileContent)
 {
     std::string dataStream;
-    std::cin >> dataStream;
+    fileContent >> dataStream;
 
     std::cout << dataStream << std::endl;
 
