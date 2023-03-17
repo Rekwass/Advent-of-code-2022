@@ -5,9 +5,9 @@
 #include <sstream>
 #include <vector>
 
-static void getInputFromStdin(std::deque<std::string>& lines)
+static void getInputFromStdin(std::ifstream& fileContent, std::deque<std::string>& lines)
 {
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; std::getline(fileContent, line);) {
         lines.emplace_back(line);
     }
 }
@@ -174,7 +174,7 @@ void pyroclasticFlow(std::ifstream& fileContent)
     int limit = 2022;
     int j = 0;
 
-    getInputFromStdin(lines);
+    getInputFromStdin(fileContent, lines);
 
     for (int i = 0; i < limit; ++i) {
         addPlaceNextRock(map);
