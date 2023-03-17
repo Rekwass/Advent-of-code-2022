@@ -8,9 +8,9 @@ struct Position {
     int y;
 };
 
-static void getInputFromStdin(std::deque<std::string>& lines)
+static void getInputFromStdin(std::ifstream& fileContent, std::deque<std::string>& lines)
 {
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; std::getline(fileContent, line);) {
         lines.emplace_back(line);
     }
 }
@@ -341,7 +341,7 @@ void beaconExclusionZone(std::ifstream& fileContent)
     std::deque<int> beaconDistanceList;
     Position position = {.x = 0, .y = 0};
 
-    getInputFromStdin(lines);
+    getInputFromStdin(fileContent, lines);
     parseInput(lines, positionLists);
 
     beaconDistanceList = initBeaconDistanceList(positionLists);
@@ -351,7 +351,7 @@ void beaconExclusionZone(std::ifstream& fileContent)
     std::cout << "solution = [" << position.x << ", " << position.y << "]" << std::endl;
 }
 
-// void beaconExclusionZone()
+// void beaconExclusionZone(std::ifstream& fileContent)
 // {
 //     std::deque<std::string> lines;
 //     std::deque<std::deque<Position>> positionLists;
@@ -363,7 +363,7 @@ void beaconExclusionZone(std::ifstream& fileContent)
 //     int biggestBeaconRadius = 0;
 //     int noBeacon = 0;
 //
-//     getInputFromStdin(lines);
+//     getInputFromStdin(fileContent, lines);
 //     parseInput(lines, positionLists);
 //
 //     displayPositions(positionLists);
