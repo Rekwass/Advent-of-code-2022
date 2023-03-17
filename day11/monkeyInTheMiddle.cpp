@@ -1,3 +1,4 @@
+#include <fstream>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -180,7 +181,7 @@ void monkeyInTheMiddle(std::ifstream& fileContent)
     std::string word;
     int nbRound = 10000;
 
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; std::getline(fileContent, line);) {
         lines.emplace_back(line);
     }
 
