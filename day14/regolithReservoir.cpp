@@ -174,9 +174,9 @@ int countSand(std::vector<std::string>& map)
     return nbSandUnit;
 }
 
-static void getInputFromStdin(std::vector<std::string>& lines)
+static void getInputFromStdin(std::ifstream& fileContent, std::vector<std::string>& lines)
 {
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; std::getline(fileContent, line);) {
         lines.emplace_back(line);
     }
 }
@@ -292,7 +292,7 @@ void regolithReservoir(std::ifstream& fileContent)
     int smallestX = 500;
     Position biggestPosition = {.x = 500, .y = 0};
 
-    getInputFromStdin(lines);
+    getInputFromStdin(fileContent, lines);
     parseInput(lines, positionLists);
 
     smallestX = getSmallestX(positionLists);
@@ -320,7 +320,7 @@ void regolithReservoir(std::ifstream& fileContent)
     }
 }
 
-// void regolithReservoir()
+// void regolithReservoir(std::ifstream& fileContent)
 // {
 //     std::vector<std::string> map;
 //     std::vector<std::string> lines;
@@ -328,7 +328,7 @@ void regolithReservoir(std::ifstream& fileContent)
 //     int smallestX = 500;
 //     Position biggestPosition = {.x = 500, .y = 0};
 //
-//     getInputFromStdin(lines);
+//     getInputFromStdin(fileContent, lines);
 //     parseInput(lines, positionLists);
 //
 //     smallestX = getSmallestX(positionLists);
