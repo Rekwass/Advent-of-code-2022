@@ -94,7 +94,7 @@ int findShortestPath(std::vector<std::string>& heightMap, std::vector<std::vecto
     return shortestPath;
 }
 
-// void hillClimbingAlgorithm()
+// void hillClimbingAlgorithm(std::ifstream fileContent)
 // {
 //     std::vector<std::string> heightMap = {};
 //     std::vector<std::vector<int>> pathMap = {};
@@ -102,7 +102,7 @@ int findShortestPath(std::vector<std::string>& heightMap, std::vector<std::vecto
 //     Position endPosition = {};
 //     int shortestPath = 0;
 //
-//     for (std::string line; std::getline(std::cin, line);) {
+//     for (std::string line; std::getline(fileContent, line);) {
 //         heightMap.emplace_back(line);
 //     }
 //
@@ -177,7 +177,7 @@ void hillClimbingAlgorithm(std::ifstream& fileContent)
     Position endPosition = {};
     int shortestPath = 0;
 
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; std::getline(fileContent, line);) {
         heightMap.emplace_back(line);
     }
 
