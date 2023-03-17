@@ -41,7 +41,7 @@ void cathodeRayTube(std::ifstream& fileContent)
     int signal = 0;
     int y = 0;
 
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; std::getline(fileContent, line);) {
         lines.emplace_back(line);
     }
 
@@ -82,7 +82,7 @@ void cathodeRayTube(std::ifstream& fileContent)
     }
 }
 
-// void cathodeRayTube()
+// void cathodeRayTube(std::ifstream& fileContent)
 // {
 //     std::vector<std::string> lines = {};
 //     std::stringstream ss;
@@ -90,7 +90,7 @@ void cathodeRayTube(std::ifstream& fileContent)
 //     int x = 1;
 //     int signal = 0;
 //
-//     for (std::string line; std::getline(std::cin, line);) {
+//     for (std::string line; std::getline(fileContent, line);) {
 //         lines.emplace_back(line);
 //     }
 //
