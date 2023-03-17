@@ -163,13 +163,13 @@ void displayPackets(std::vector<Packets>& packets)
     }
 }
 
-void initPackets(std::vector<Packets>& packets)
+void initPackets(std::ifstream& fileContent, std::vector<Packets>& packets)
 {
-    for (std::string line; std::getline(std::cin, line);) {
+    for (std::string line; std::getline(fileContent, line);) {
         addPacket(packets, line);
-        std::getline(std::cin, line);
+        std::getline(fileContent, line);
         addPacket(packets, line);
-        std::getline(std::cin, line);
+        std::getline(fileContent, line);
     }
     std::string specialPacket = "[[2]]";
     addPacket(packets, specialPacket);
@@ -240,7 +240,7 @@ void distressSignal(std::ifstream& fileContent)
     int firstSpecialPacket = 0;
     int secondSpecialPacket = 0;
 
-    initPackets(packets);
+    initPackets(fileContent, packets);
     sortPackets(packets);
     firstSpecialPacket = findPacket(packets, firstSpecialPackets);
     secondSpecialPacket = findPacket(packets, secondSpecialPackets);
@@ -251,7 +251,7 @@ void distressSignal(std::ifstream& fileContent)
     std::cout << "result = " << firstSpecialPacket * secondSpecialPacket << std::endl;
 }
 
-// void distressSignal()
+// void distressSignal(std::ifstream& fileContent)
 // {
 //     std::stringstream ss;
 //     std::string word;
@@ -262,10 +262,10 @@ void distressSignal(std::ifstream& fileContent)
 //
 //     int result = 0;
 //     std::string tmp;
-//     for (std::string line; std::getline(std::cin, line);) {
+//     for (std::string line; std::getline(fileContent, line);) {
 //         initPacket(line, firstPackets);
 //         tmp = line;
-//         std::getline(std::cin, line);
+//         std::getline(fileContent, line);
 //         initPacket(line, secondPackets);
 //         result = comparePackets(firstPackets, secondPackets, pairId);
 //         if (result != 0) {
@@ -275,7 +275,7 @@ void distressSignal(std::ifstream& fileContent)
 //             std::cout << "inputs are" << (result == 0 ? " NOT " : " ") << "in the right order" << std::endl
 //                       << std::endl;
 //         }
-//         std::getline(std::cin, line);
+//         std::getline(fileContent, line);
 //         validPackets += comparePackets(firstPackets, secondPackets, pairId);
 //         firstPackets.clear();
 //         secondPackets.clear();
